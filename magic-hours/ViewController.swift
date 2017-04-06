@@ -9,14 +9,22 @@
 import UIKit;
 import CoreLocation;
 
+
 class ViewController: UIViewController, CLLocationManagerDelegate {
 	
 	//MARK: Properties
 	let locationManager = CLLocationManager();
 	
+	@IBOutlet weak var labelSunrise: UILabel!
 	//MARK: Actions
+	@IBOutlet weak var labelSunset: UILabel!
 
 	@IBAction func getLocation(_ sender: UIButton)
+	{
+		
+	}
+	
+	func getLocation()
 	{
 		locationManager.delegate = self;
 		locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -27,6 +35,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		getLocation();
 		
 	}
 
@@ -37,14 +46,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 	
 
 	
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+	{
 		print("Got user location");
-		
+		locationManager.stopUpdatingLocation();
+	
 		let userLocation:CLLocation = locations[0];
-		let long = userLocation.coordinate.longitude;
-		let lat = userLocation.coordinate.latitude;
-
-		print("locations = \(lat), \(long)")
+		
+		let date = Date();
+		
+		let info = SunInfo(latitude: userLocation.coordinate.latitude, longtitude: userLocation.coordinate.longitude, date: date);
+		
+		labelSunrise.text = "☀️ \(info.sunriseTime!.hour!):\(info.sunriseTime!.minute!)";
+		labelSunset.text = "🌕 \(info.sunsetTime!.hour!):\(info.sunsetTime!.minute!)";
+		
 	}
 	
 	func locationManager(_ manager: CLLocationManager, didFailWithError error: NSError)
