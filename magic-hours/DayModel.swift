@@ -9,26 +9,26 @@
 import Foundation;
 import CoreLocation;
 
-extension Double {
-	/// Rounds the double to decimal places value
-	func roundTo(places:Int) -> Double {
-		let divisor = pow(10.0, Double(places))
-		return (self * divisor).rounded() / divisor
-	}
-}
 
-class SunInfo
+
+class DayModel
 {
-	var sunriseTime:DateComponents?;
-	var sunsetTime:DateComponents?;
+	var sunriseModel:MagicHourModel?;
+	var sunsetModel:MagicHourModel?;
+	
+	var morningBlueHourModel:MagicHourModel?;
+	var morningGoldenHourModel:MagicHourModel?;
+	var eveningBlueHourModel:MagicHourModel?;
+	var eveningGoldenHourModel:MagicHourModel?;
+	
 	var timeZone:TimeZone?;
 	
 	var isPolarDay:Bool;
 	var isPolarNight:Bool;
-
 	
 	init(latitude: Double, longtitude: Double, date: Date)
 	{
+		
 		isPolarDay = false;
 		isPolarNight = false;
 		
@@ -42,8 +42,8 @@ class SunInfo
 			return;
 		}
 		
-		print(self.timeZone?.description);
-		var timeZoneOffset: Double = Double(timeZone!.secondsFromGMT(for: date)) / 3600.0; //hours offset from gmt
+		//print(self.timeZone?.description);
+		let timeZoneOffset: Double = Double(timeZone!.secondsFromGMT(for: date)) / 3600.0; //hours offset from gmt
 		
 		//if (timeZone!.isDaylightSavingTime(for: date))
 		//{
@@ -73,7 +73,7 @@ class SunInfo
 		
 		
 		let sunrise = (M_PI - (E + 0.017453293 * longtitude + 1 * acos(C))) * 57.29577951 / 15 + timeZoneOffset;
-		let sunpeek = (M_PI - (E + 0.017453293 * longtitude + 0 * acos(C))) * 57.29577951 / 15 + timeZoneOffset;
+		//let sunpeek = (M_PI - (E + 0.017453293 * longtitude + 0 * acos(C))) * 57.29577951 / 15 + timeZoneOffset;
 		let sunset = (M_PI - (E + 0.017453293 * longtitude + -1 * acos(C))) * 57.29577951 / 15 + timeZoneOffset;
 
 	
@@ -97,15 +97,18 @@ class SunInfo
 			
 			let secondsFromDatePart = Double(hours * 3600 + minutes * 60 + seconds);
 			
-			let sunriseDate = date.addingTimeInterval(sunrise * 3600 - secondsFromDatePart);
-			let sunsetDate = date.addingTimeInterval(sunset * 3600 - secondsFromDatePart);
+			sunriseModel = MagicHourModel(date: date.addingTimeInterval(sunrise * 3600 - secondsFromDatePart));
 			
-			sunriseTime = calendar.dateComponents([.hour, .minute], from: sunriseDate);
-			sunsetTime = calendar.dateComponents([.hour, .minute], from: sunsetDate);
+			morningBlueHourModel = MagicHourModel(date: date.addingTimeInterval(sunrise * 3600 - secondsFromDatePart - 60 * global.blueHourDurationMinutes));
 			
-			print("Sunrise \(sunriseTime!.hour):\(sunriseTime!.minute)");
-			print("Sunset \(sunsetTime!.hour):\(sunsetTime!.minute)");
-
+			morningGoldenHourModel = MagicHourModel(date: date.addingTimeInterval(sunrise * 3600 - secondsFromDatePart + 60 * global.goldenHourDurationMinutes));
+			
+			
+			sunsetModel = MagicHourModel(date: date.addingTimeInterval(sunset * 3600 - secondsFromDatePart));
+			
+			eveningBlueHourModel = MagicHourModel(date: date.addingTimeInterval(sunset * 3600 - secondsFromDatePart + 60 * global.blueHourDurationMinutes));
+			
+			eveningGoldenHourModel = MagicHourModel(date: date.addingTimeInterval(sunset * 3600 - secondsFromDatePart - 60 * global.goldenHourDurationMinutes));
 			
 		}
 		

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4921B5571E96B2CA0019809D /* sunset.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 4921B5561E96B2CA0019809D /* sunset.JPG */; };
+		495B63431E9BED17000EF382 /* global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B63421E9BED17000EF382 /* global.swift */; };
+		495B63451E9BF049000EF382 /* MagicHourModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B63441E9BF049000EF382 /* MagicHourModel.swift */; };
+		495B63471E9BF0D0000EF382 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B63461E9BF0D0000EF382 /* Extensions.swift */; };
 		49E8D3491E953B81001CF8CF /* TimezoneMapper-baseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8D2F81E953B81001CF8CF /* TimezoneMapper-baseClass.swift */; };
 		49E8D34A1E953B81001CF8CF /* TimezoneMapper-call0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8D2F91E953B81001CF8CF /* TimezoneMapper-call0.swift */; };
 		49E8D34B1E953B81001CF8CF /* TimezoneMapper-call1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8D2FA1E953B81001CF8CF /* TimezoneMapper-call1.swift */; };
@@ -89,7 +92,7 @@
 		49E8D3971E953B81001CF8CF /* TimezoneMapper-init26.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8D3461E953B81001CF8CF /* TimezoneMapper-init26.swift */; };
 		49E8D3981E953B81001CF8CF /* TimezoneMapper-init27.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8D3471E953B81001CF8CF /* TimezoneMapper-init27.swift */; };
 		49E8D3991E953B81001CF8CF /* TimezoneMapper-initPolyArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8D3481E953B81001CF8CF /* TimezoneMapper-initPolyArray.swift */; };
-		49E8D39C1E9543F4001CF8CF /* SunInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8D39B1E9543F4001CF8CF /* SunInfo.swift */; };
+		49E8D39C1E9543F4001CF8CF /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8D39B1E9543F4001CF8CF /* DayModel.swift */; };
 		49F733071E8C265800A2A6C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F733061E8C265800A2A6C5 /* AppDelegate.swift */; };
 		49F733091E8C265800A2A6C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F733081E8C265800A2A6C5 /* ViewController.swift */; };
 		49F7330C1E8C265800A2A6C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49F7330A1E8C265800A2A6C5 /* Main.storyboard */; };
@@ -99,6 +102,9 @@
 
 /* Begin PBXFileReference section */
 		4921B5561E96B2CA0019809D /* sunset.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunset.JPG; sourceTree = "<group>"; };
+		495B63421E9BED17000EF382 /* global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = global.swift; sourceTree = "<group>"; };
+		495B63441E9BF049000EF382 /* MagicHourModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagicHourModel.swift; sourceTree = "<group>"; };
+		495B63461E9BF0D0000EF382 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		49E8D2F81E953B81001CF8CF /* TimezoneMapper-baseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TimezoneMapper-baseClass.swift"; path = "../../../split-up-timezone-mapper-master 2/output/TimezoneMapper-baseClass.swift"; sourceTree = "<group>"; };
 		49E8D2F91E953B81001CF8CF /* TimezoneMapper-call0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TimezoneMapper-call0.swift"; path = "../../../split-up-timezone-mapper-master 2/output/TimezoneMapper-call0.swift"; sourceTree = "<group>"; };
 		49E8D2FA1E953B81001CF8CF /* TimezoneMapper-call1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TimezoneMapper-call1.swift"; path = "../../../split-up-timezone-mapper-master 2/output/TimezoneMapper-call1.swift"; sourceTree = "<group>"; };
@@ -180,7 +186,7 @@
 		49E8D3461E953B81001CF8CF /* TimezoneMapper-init26.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TimezoneMapper-init26.swift"; path = "../../../split-up-timezone-mapper-master 2/output/TimezoneMapper-init26.swift"; sourceTree = "<group>"; };
 		49E8D3471E953B81001CF8CF /* TimezoneMapper-init27.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TimezoneMapper-init27.swift"; path = "../../../split-up-timezone-mapper-master 2/output/TimezoneMapper-init27.swift"; sourceTree = "<group>"; };
 		49E8D3481E953B81001CF8CF /* TimezoneMapper-initPolyArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TimezoneMapper-initPolyArray.swift"; path = "../../../split-up-timezone-mapper-master 2/output/TimezoneMapper-initPolyArray.swift"; sourceTree = "<group>"; };
-		49E8D39B1E9543F4001CF8CF /* SunInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunInfo.swift; sourceTree = "<group>"; };
+		49E8D39B1E9543F4001CF8CF /* DayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
 		49F733031E8C265800A2A6C5 /* magic-hours.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "magic-hours.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F733061E8C265800A2A6C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49F733081E8C265800A2A6C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -205,7 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				49E8D2F51E953AF8001CF8CF /* TimeZoneMapper */,
-				49E8D39B1E9543F4001CF8CF /* SunInfo.swift */,
+				495B63461E9BF0D0000EF382 /* Extensions.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -301,6 +307,9 @@
 		49E8D39A1E9540AD001CF8CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				49E8D39B1E9543F4001CF8CF /* DayModel.swift */,
+				495B63421E9BED17000EF382 /* global.swift */,
+				495B63441E9BF049000EF382 /* MagicHourModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -416,7 +425,8 @@
 				49E8D36F1E953B81001CF8CF /* TimezoneMapper-call37.swift in Sources */,
 				49E8D3911E953B81001CF8CF /* TimezoneMapper-init20.swift in Sources */,
 				49E8D35E1E953B81001CF8CF /* TimezoneMapper-call20.swift in Sources */,
-				49E8D39C1E9543F4001CF8CF /* SunInfo.swift in Sources */,
+				49E8D39C1E9543F4001CF8CF /* DayModel.swift in Sources */,
+				495B63471E9BF0D0000EF382 /* Extensions.swift in Sources */,
 				49E8D3981E953B81001CF8CF /* TimezoneMapper-init27.swift in Sources */,
 				49F733091E8C265800A2A6C5 /* ViewController.swift in Sources */,
 				49E8D3691E953B81001CF8CF /* TimezoneMapper-call31.swift in Sources */,
@@ -424,12 +434,14 @@
 				49E8D3711E953B81001CF8CF /* TimezoneMapper-call39.swift in Sources */,
 				49E8D3561E953B81001CF8CF /* TimezoneMapper-call12.swift in Sources */,
 				49E8D3591E953B81001CF8CF /* TimezoneMapper-call15.swift in Sources */,
+				495B63431E9BED17000EF382 /* global.swift in Sources */,
 				49E8D3781E953B81001CF8CF /* TimezoneMapper-call46.swift in Sources */,
 				49E8D3901E953B81001CF8CF /* TimezoneMapper-init19.swift in Sources */,
 				49E8D3871E953B81001CF8CF /* TimezoneMapper-init10.swift in Sources */,
 				49E8D3821E953B81001CF8CF /* TimezoneMapper-init5.swift in Sources */,
 				49E8D3771E953B81001CF8CF /* TimezoneMapper-call45.swift in Sources */,
 				49E8D3621E953B81001CF8CF /* TimezoneMapper-call24.swift in Sources */,
+				495B63451E9BF049000EF382 /* MagicHourModel.swift in Sources */,
 				49E8D3931E953B81001CF8CF /* TimezoneMapper-init22.swift in Sources */,
 				49E8D36A1E953B81001CF8CF /* TimezoneMapper-call32.swift in Sources */,
 				49E8D3671E953B81001CF8CF /* TimezoneMapper-call29.swift in Sources */,

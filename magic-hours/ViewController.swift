@@ -55,10 +55,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 		
 		let date = Date();
 		
-		let info = SunInfo(latitude: userLocation.coordinate.latitude, longtitude: userLocation.coordinate.longitude, date: date);
+		let info = DayModel(latitude: userLocation.coordinate.latitude, longtitude: userLocation.coordinate.longitude, date: date);
 		
-		labelSunrise.text = "☀️ \(info.sunriseTime!.hour!):\(info.sunriseTime!.minute!)";
-		labelSunset.text = "🌕 \(info.sunsetTime!.hour!):\(info.sunsetTime!.minute!)";
+		labelSunrise.text = "☀️ \(info.sunriseModel!.formatted)";
+		labelSunset.text = "🌕 \(info.sunsetModel!.formatted)";
 		
 	}
 	
