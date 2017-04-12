@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,58 +18,69 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunset.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="c3z-wf-ZBR">
-                                <rect key="frame" x="20" y="553" width="374" height="183"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings" translatesAutoresizingMaskIntoConstraints="NO" id="vGn-VO-GTD">
+                                <rect key="frame" x="8" y="28" width="30" height="30"/>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="183" id="F5B-GW-m6d"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Fco-0q-fJZ"/>
+                                    <constraint firstAttribute="height" constant="30" id="UtA-Ci-GCa"/>
+                                    <constraint firstAttribute="width" constant="30" id="tY3-xA-imP"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ORP-n4-Pda" appends="YES" id="HJJ-of-yj9"/>
+                                </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☀️ 07:20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4B-ck-xa7">
-                                <rect key="frame" x="32" y="32.000000000000007" width="350" height="64.666666666666686"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="54"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="🌕 19:20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6s-8g-w7G">
-                                <rect key="frame" x="32" y="108" width="370" height="65"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="54"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hEp-Zw-U9b">
+                                <rect key="frame" x="8" y="70" width="240" height="128"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RbF-Ix-TEw" customClass="GoldenHoursControl" customModule="magic_hours" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="time" value="morning"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="beforeHour" value="07:00"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="sunHour" value="07:30"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="afterHour" value="08:00"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-S1-l6p" customClass="GoldenHoursControl" customModule="magic_hours" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="68" width="240" height="60"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="time" value="evening"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="beforeHour" value="19:00"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="sunHour" value="19:30"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="afterHour" value="20:00"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.50889918930334654" blue="0.037626392817827647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Y6s-8g-w7G" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="12" id="3qL-me-6Mm"/>
-                            <constraint firstItem="c3z-wf-ZBR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9Xl-L4-XXY"/>
-                            <constraint firstItem="c3z-wf-ZBR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="B4N-sR-5nb"/>
-                            <constraint firstItem="m4B-ck-xa7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32" id="Fzi-gU-Y1k"/>
-                            <constraint firstItem="c3z-wf-ZBR" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="NIW-es-Vt5"/>
-                            <constraint firstAttribute="trailing" secondItem="c3z-wf-ZBR" secondAttribute="trailing" id="NwG-lF-EIx"/>
-                            <constraint firstItem="Y6s-8g-w7G" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="24" id="PLA-uH-LmM"/>
-                            <constraint firstItem="Y6s-8g-w7G" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32" id="VTm-lk-tWN"/>
-                            <constraint firstItem="Y6s-8g-w7G" firstAttribute="top" secondItem="m4B-ck-xa7" secondAttribute="bottom" constant="12" id="WQL-FS-Ncp"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="c3z-wf-ZBR" secondAttribute="bottom" id="dLd-Yd-H0R"/>
-                            <constraint firstItem="m4B-ck-xa7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="12" id="dPG-Py-wPc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="m4B-ck-xa7" secondAttribute="trailing" constant="12" id="eBg-vI-POC"/>
-                            <constraint firstItem="m4B-ck-xa7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="kJh-nV-la4"/>
-                            <constraint firstAttribute="trailing" secondItem="Y6s-8g-w7G" secondAttribute="trailing" constant="12" id="mT9-dQ-A7f"/>
-                            <constraint firstItem="c3z-wf-ZBR" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="sae-SY-0IN"/>
+                            <constraint firstItem="hEp-Zw-U9b" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="VUK-fm-nGW"/>
+                            <constraint firstItem="vGn-VO-GTD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="ido-p1-kdp"/>
+                            <constraint firstItem="hEp-Zw-U9b" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="70" id="wf3-S8-NQM"/>
+                            <constraint firstItem="vGn-VO-GTD" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="28" id="zrE-Ps-cOg"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="labelSunrise" destination="m4B-ck-xa7" id="K2H-bN-WAw"/>
-                        <outlet property="labelSunset" destination="Y6s-8g-w7G" id="UGY-gc-dFu"/>
+                        <outlet property="eveningControl" destination="k6Y-S1-l6p" id="Q7x-qk-JGS"/>
+                        <outlet property="morningControl" destination="RbF-Ix-TEw" id="HVi-g2-uk7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ORP-n4-Pda">
+                    <connections>
+                        <action selector="showSettings:" destination="BYZ-38-t0r" id="hzt-xX-sAB"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="136.23188405797103" y="129.61956521739131"/>
+            <point key="canvasLocation" x="135" y="128.75"/>
         </scene>
     </scenes>
     <resources>
-        <image name="sunset.JPG" width="716" height="717"/>
+        <image name="settings" width="64" height="64"/>
     </resources>
 </document>

@@ -15,14 +15,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 	//MARK: Properties
 	let locationManager = CLLocationManager();
 	
-	@IBOutlet weak var labelSunrise: UILabel!
-	//MARK: Actions
-	@IBOutlet weak var labelSunset: UILabel!
+	//@IBOutlet weak var labelSunrise: UILabel!
+	
+	//@IBOutlet weak var labelSunset: UILabel!
 
-	@IBAction func getLocation(_ sender: UIButton)
-	{
-		
+	//MARK: Outlets
+	@IBOutlet weak var morningControl: GoldenHoursControl!
+	
+	@IBOutlet weak var eveningControl: GoldenHoursControl!
+	
+	//MARK: Actions
+	@IBAction func showSettings(_ sender: UITapGestureRecognizer) {
 	}
+	
+	
 	
 	func getLocation()
 	{
@@ -57,9 +63,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 		
 		let info = DayModel(latitude: userLocation.coordinate.latitude, longtitude: userLocation.coordinate.longitude, date: date);
 		
-		labelSunrise.text = "☀️ \(info.sunriseModel!.formatted)";
-		labelSunset.text = "🌕 \(info.sunsetModel!.formatted)";
+		morningControl.setHours(before: info.morningBlueHourModel!.formatted, sun: info.sunriseModel!.formatted, after: info.morningGoldenHourModel!.formatted);
 		
+
+		eveningControl.setHours(before: info.eveningGoldenHourModel!.formatted, sun: info.sunsetModel!.formatted, after: info.eveningBlueHourModel!.formatted);
 	}
 	
 	func locationManager(_ manager: CLLocationManager, didFailWithError error: NSError)

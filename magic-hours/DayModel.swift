@@ -13,6 +13,11 @@ import CoreLocation;
 
 class DayModel
 {
+	enum DayType
+	{
+		case regular, polarDay, polarNight
+	}
+	
 	var sunriseModel:MagicHourModel?;
 	var sunsetModel:MagicHourModel?;
 	
@@ -23,14 +28,12 @@ class DayModel
 	
 	var timeZone:TimeZone?;
 	
-	var isPolarDay:Bool;
-	var isPolarNight:Bool;
+	var type:DayType = .regular;
+	
 	
 	init(latitude: Double, longtitude: Double, date: Date)
 	{
 		
-		isPolarDay = false;
-		isPolarNight = false;
 		
 		let calendar = Calendar.current;
 		
@@ -81,11 +84,11 @@ class DayModel
 		{
 			if (C < 0)
 			{
-				isPolarDay = true;
+				self.type = .polarDay;
 			}
 			else
 			{
-				isPolarNight = true;
+				self.type = .polarNight;
 			}
 		
 		}
