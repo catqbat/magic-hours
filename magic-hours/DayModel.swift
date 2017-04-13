@@ -18,6 +18,7 @@ class DayModel
 		case regular, polarDay, polarNight
 	}
 	
+	var location:LocationModel;
 	var sunriseModel:MagicHourModel?;
 	var sunsetModel:MagicHourModel?;
 	
@@ -26,33 +27,17 @@ class DayModel
 	var eveningBlueHourModel:MagicHourModel?;
 	var eveningGoldenHourModel:MagicHourModel?;
 	
-	var timeZone:TimeZone?;
-	
 	var type:DayType = .regular;
 	
+	let calendar = Calendar.current;
 	
-	init(latitude: Double, longtitude: Double, date: Date)
+	init(location: LocationModel, date: Date)
 	{
+		self.location = location;
 		
+		let timeZoneOffset: Double = Double(location.timeZone!.secondsFromGMT(for: date)) / 3600.0; //hours offset from gmt
 		
-		let calendar = Calendar.current;
-		
-		let location = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude);
-		self.timeZone = TimezoneMapper.latLngToTimezone(location);
-		
-		if (self.timeZone == nil)
-		{
-			return;
-		}
-		
-		//print(self.timeZone?.description);
-		let timeZoneOffset: Double = Double(timeZone!.secondsFromGMT(for: date)) / 3600.0; //hours offset from gmt
-		
-		//if (timeZone!.isDaylightSavingTime(for: date))
-		//{
-		//	timeZoneOffset -= 1;
-		//}
-		
+		//sun equations magic
 		
 		let Req = -0.833; //sun angle during surise and sunset
 		
@@ -72,12 +57,12 @@ class DayModel
 		let F = 0.033423 * sin(G) + 0.00034907 * sin(2 * G);
 		let E = 0.0430398 * sin(2 * (L + F)) - 0.00092502 * sin(4 * (L + F)) - F;
 		let A = asin(sin(O) * sin(L + F));
-		let C = (sin(0.017453293 * Req) - sin(0.017453293 * latitude) * sin(A)) / (cos(0.017453293 * latitude) * cos(A));
+		let C = (sin(0.017453293 * Req) - sin(0.017453293 * location.latitude) * sin(A)) / (cos(0.017453293 * location.latitude) * cos(A));
 		
 		
-		let sunrise = (M_PI - (E + 0.017453293 * longtitude + 1 * acos(C))) * 57.29577951 / 15 + timeZoneOffset;
+		let sunrise = (M_PI - (E + 0.017453293 * location.longitude + 1 * acos(C))) * 57.29577951 / 15 + timeZoneOffset;
 		//let sunpeek = (M_PI - (E + 0.017453293 * longtitude + 0 * acos(C))) * 57.29577951 / 15 + timeZoneOffset;
-		let sunset = (M_PI - (E + 0.017453293 * longtitude + -1 * acos(C))) * 57.29577951 / 15 + timeZoneOffset;
+		let sunset = (M_PI - (E + 0.017453293 * location.longitude + -1 * acos(C))) * 57.29577951 / 15 + timeZoneOffset;
 
 	
 		if (sunrise.isNaN)
@@ -94,24 +79,19 @@ class DayModel
 		}
 		else
 		{
-			let hours = calendar.component(.hour, from: date);
-			let minutes = calendar.component(.minute, from: date);
-			let seconds = calendar.component(.second, from: date);
 			
-			let secondsFromDatePart = Double(hours * 3600 + minutes * 60 + seconds);
+			sunriseModel = MagicHourModel(date: date.addingTimeInterval(sunrise * 3600));
 			
-			sunriseModel = MagicHourModel(date: date.addingTimeInterval(sunrise * 3600 - secondsFromDatePart));
+			morningBlueHourModel = MagicHourModel(date: date.addingTimeInterval(sunrise * 3600 - 60 * global.blueHourDurationMinutes));
 			
-			morningBlueHourModel = MagicHourModel(date: date.addingTimeInterval(sunrise * 3600 - secondsFromDatePart - 60 * global.blueHourDurationMinutes));
-			
-			morningGoldenHourModel = MagicHourModel(date: date.addingTimeInterval(sunrise * 3600 - secondsFromDatePart + 60 * global.goldenHourDurationMinutes));
+			morningGoldenHourModel = MagicHourModel(date: date.addingTimeInterval(sunrise * 3600 + 60 * global.goldenHourDurationMinutes));
 			
 			
-			sunsetModel = MagicHourModel(date: date.addingTimeInterval(sunset * 3600 - secondsFromDatePart));
+			sunsetModel = MagicHourModel(date: date.addingTimeInterval(sunset * 3600));
 			
-			eveningBlueHourModel = MagicHourModel(date: date.addingTimeInterval(sunset * 3600 - secondsFromDatePart + 60 * global.blueHourDurationMinutes));
+			eveningBlueHourModel = MagicHourModel(date: date.addingTimeInterval(sunset * 3600 + 60 * global.blueHourDurationMinutes));
 			
-			eveningGoldenHourModel = MagicHourModel(date: date.addingTimeInterval(sunset * 3600 - secondsFromDatePart - 60 * global.goldenHourDurationMinutes));
+			eveningGoldenHourModel = MagicHourModel(date: date.addingTimeInterval(sunset * 3600 - 60 * global.goldenHourDurationMinutes));
 			
 		}
 		

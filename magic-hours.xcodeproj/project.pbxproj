@@ -12,6 +12,7 @@
 		495B63471E9BF0D0000EF382 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B63461E9BF0D0000EF382 /* Extensions.swift */; };
 		499F0C301E9D4BEC0006B2F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F0C2F1E9D4BEC0006B2F8 /* ViewController.swift */; };
 		499F0C331E9E84A60006B2F8 /* GoldenHoursControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F0C321E9E84A60006B2F8 /* GoldenHoursControl.swift */; };
+		499F0C351E9FE48A0006B2F8 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F0C341E9FE48A0006B2F8 /* LocationModel.swift */; };
 		49E8D3491E953B81001CF8CF /* TimezoneMapper-baseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8D2F81E953B81001CF8CF /* TimezoneMapper-baseClass.swift */; };
 		49E8D34A1E953B81001CF8CF /* TimezoneMapper-call0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8D2F91E953B81001CF8CF /* TimezoneMapper-call0.swift */; };
 		49E8D34B1E953B81001CF8CF /* TimezoneMapper-call1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8D2FA1E953B81001CF8CF /* TimezoneMapper-call1.swift */; };
@@ -106,6 +107,7 @@
 		495B63461E9BF0D0000EF382 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		499F0C2F1E9D4BEC0006B2F8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		499F0C321E9E84A60006B2F8 /* GoldenHoursControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoldenHoursControl.swift; sourceTree = "<group>"; };
+		499F0C341E9FE48A0006B2F8 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		49E8D2F81E953B81001CF8CF /* TimezoneMapper-baseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TimezoneMapper-baseClass.swift"; path = "../../../split-up-timezone-mapper-master 2/output/TimezoneMapper-baseClass.swift"; sourceTree = "<group>"; };
 		49E8D2F91E953B81001CF8CF /* TimezoneMapper-call0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TimezoneMapper-call0.swift"; path = "../../../split-up-timezone-mapper-master 2/output/TimezoneMapper-call0.swift"; sourceTree = "<group>"; };
 		49E8D2FA1E953B81001CF8CF /* TimezoneMapper-call1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TimezoneMapper-call1.swift"; path = "../../../split-up-timezone-mapper-master 2/output/TimezoneMapper-call1.swift"; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				49E8D39B1E9543F4001CF8CF /* DayModel.swift */,
 				495B63421E9BED17000EF382 /* global.swift */,
 				495B63441E9BF049000EF382 /* MagicHourModel.swift */,
+				499F0C341E9FE48A0006B2F8 /* LocationModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				49E8D38A1E953B81001CF8CF /* TimezoneMapper-init13.swift in Sources */,
 				49E8D37B1E953B81001CF8CF /* TimezoneMapper-call49.swift in Sources */,
 				49E8D38C1E953B81001CF8CF /* TimezoneMapper-init15.swift in Sources */,
+				499F0C351E9FE48A0006B2F8 /* LocationModel.swift in Sources */,
 				49E8D34A1E953B81001CF8CF /* TimezoneMapper-call0.swift in Sources */,
 				49E8D38B1E953B81001CF8CF /* TimezoneMapper-init14.swift in Sources */,
 				49E8D3761E953B81001CF8CF /* TimezoneMapper-call44.swift in Sources */,

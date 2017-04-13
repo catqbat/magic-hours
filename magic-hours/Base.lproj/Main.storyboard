@@ -34,10 +34,16 @@
                                 </connections>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hEp-Zw-U9b">
-                                <rect key="frame" x="8" y="70" width="240" height="128"/>
+                                <rect key="frame" x="8" y="70" width="240" height="156.5"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bmt-ap-gZH">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RbF-Ix-TEw" customClass="GoldenHoursControl" customModule="magic_hours" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
+                                        <rect key="frame" x="0.0" y="28.5" width="240" height="60"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="time" value="morning"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="beforeHour" value="07:00"/>
@@ -46,7 +52,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-S1-l6p" customClass="GoldenHoursControl" customModule="magic_hours" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="68" width="240" height="60"/>
+                                        <rect key="frame" x="0.0" y="96.5" width="240" height="60"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="time" value="evening"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="beforeHour" value="19:00"/>
@@ -67,6 +73,7 @@
                     </view>
                     <connections>
                         <outlet property="eveningControl" destination="k6Y-S1-l6p" id="Q7x-qk-JGS"/>
+                        <outlet property="locationDescription" destination="Bmt-ap-gZH" id="k3R-R6-iIe"/>
                         <outlet property="morningControl" destination="RbF-Ix-TEw" id="HVi-g2-uk7"/>
                     </connections>
                 </viewController>
