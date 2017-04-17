@@ -12,6 +12,7 @@ class MagicHourModel
 	var magicHourTime:DateComponents;
 	var magicHourDate:Date;
 	
+	let calendar = Calendar.current;
 	let timeFormatter:DateFormatter;
 
 	var formatted:String
@@ -26,7 +27,6 @@ class MagicHourModel
 		timeFormatter.dateStyle = .none;
 		timeFormatter.timeStyle = .short;
 
-		let calendar = Calendar.current;
 		
 		magicHourDate = date;
 		magicHourTime = calendar.dateComponents([.hour, .minute], from: magicHourDate);

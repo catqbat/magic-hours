@@ -15,16 +15,23 @@ class LocationModel
 	var longitude: Double;
 	var description: String;
 	var zip: String?;
-	var timeZone:TimeZone? = nil;
-	var currentLocalTime: DateComponents? = nil;
+	var timeZone: TimeZone? = nil;
+	var currentLocalTime: String? = nil;
 	
-	var currentDay:DayModel? = nil;
+	var currentDay: DayModel? = nil;
 	var days = [Date: DayModel]();
 	
 	let calendar = Calendar.current;
+	let timeFormatter:DateFormatter;
+	
+	var offsetFromLocalTime: TimeInterval? = nil;
 	
 	init(latitude: Double, longitude: Double, description: String?, zip: String?)
 	{
+		timeFormatter = DateFormatter();
+		timeFormatter.dateStyle = .none;
+		timeFormatter.timeStyle = .short;
+		
 		self.latitude = latitude;
 		self.longitude = longitude;
 		
@@ -47,8 +54,52 @@ class LocationModel
 			return;
 		}
 		
-		addDay(date: nil);
+		let currentTime = Date();
 		
+		let locationOffset = timeZone!.secondsFromGMT(for: currentTime);
+		let currentTimeOffset = TimeZone.current.secondsFromGMT(for: currentTime);
+		offsetFromLocalTime = TimeInterval(0 - currentTimeOffset + locationOffset);
+	
+		updateLocalTime();
+		addDay(date: nil);
+	}
+	
+	func updateLocalTime()
+	{
+		let localTimeDate = Date().addingTimeInterval(offsetFromLocalTime!);
+		//currentLocalTime = calendar.dateComponents([.hour, .minute], from: localTimeDate);
+		currentLocalTime = timeFormatter.string(from: localTimeDate);
+
+	}
+	
+	func nextDay()
+	{
+		newDay(secondsFromCurrentDay: 24*60*60);
+	}
+	
+	func prevDay()
+	{
+		newDay(secondsFromCurrentDay: 0 - 24*60*60);
+	}
+	
+	func newDay(secondsFromCurrentDay: TimeInterval)
+	{
+		if (currentDay == nil)
+		{
+			addDay(date: nil);
+		}
+		
+		let newDate = currentDay!.date.addingTimeInterval(secondsFromCurrentDay);
+		
+		if let newDay = days[newDate]
+		{
+			currentDay = newDay;
+		}
+		else
+		{
+			addDay(date: newDate);
+			currentDay = days[newDate];
+		}
 	}
 	
 	func addDay(date:Date?)

@@ -19,6 +19,13 @@ class DayModel
 	}
 	
 	var location:LocationModel;
+	var date:Date;
+	
+	var dateFormatted: String
+	{
+		return timeFormatter.string(from: date);
+	}
+	
 	var sunriseModel:MagicHourModel?;
 	var sunsetModel:MagicHourModel?;
 	
@@ -30,10 +37,16 @@ class DayModel
 	var type:DayType = .regular;
 	
 	let calendar = Calendar.current;
+	let timeFormatter:DateFormatter;
 	
 	init(location: LocationModel, date: Date)
 	{
 		self.location = location;
+		self.date = date;
+		
+		timeFormatter = DateFormatter();
+		timeFormatter.dateStyle = .medium;
+		timeFormatter.timeStyle = .none;
 		
 		let timeZoneOffset: Double = Double(location.timeZone!.secondsFromGMT(for: date)) / 3600.0; //hours offset from gmt
 		

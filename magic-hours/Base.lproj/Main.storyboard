@@ -34,16 +34,22 @@
                                 </connections>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hEp-Zw-U9b">
-                                <rect key="frame" x="8" y="70" width="240" height="156.5"/>
+                                <rect key="frame" x="8" y="70" width="240" height="251.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bmt-ap-gZH">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:28" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYu-1w-C3X">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="39.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="katowice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bmt-ap-gZH">
+                                        <rect key="frame" x="0.0" y="47.5" width="240" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RbF-Ix-TEw" customClass="GoldenHoursControl" customModule="magic_hours" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28.5" width="240" height="60"/>
+                                        <rect key="frame" x="0.0" y="76" width="240" height="60"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="time" value="morning"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="beforeHour" value="07:00"/>
@@ -52,7 +58,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-S1-l6p" customClass="GoldenHoursControl" customModule="magic_hours" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="96.5" width="240" height="60"/>
+                                        <rect key="frame" x="0.0" y="144" width="240" height="60"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="time" value="evening"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="beforeHour" value="19:00"/>
@@ -60,7 +66,18 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="afterHour" value="20:00"/>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 April" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRx-ZN-nsA">
+                                        <rect key="frame" x="0.0" y="212" width="240" height="39.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="uR1-6e-k27" appends="YES" id="BJM-AG-UsN"/>
+                                    <outletCollection property="gestureRecognizers" destination="tFU-D8-2zt" appends="YES" id="8dG-lg-3rX"/>
+                                </connections>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.50889918930334654" blue="0.037626392817827647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -73,7 +90,9 @@
                     </view>
                     <connections>
                         <outlet property="eveningControl" destination="k6Y-S1-l6p" id="Q7x-qk-JGS"/>
+                        <outlet property="locationCurrentDayDate" destination="WRx-ZN-nsA" id="8a6-82-Tko"/>
                         <outlet property="locationDescription" destination="Bmt-ap-gZH" id="k3R-R6-iIe"/>
+                        <outlet property="locationLocalTime" destination="DYu-1w-C3X" id="AIG-HC-49K"/>
                         <outlet property="morningControl" destination="RbF-Ix-TEw" id="HVi-g2-uk7"/>
                     </connections>
                 </viewController>
@@ -83,6 +102,16 @@
                         <action selector="showSettings:" destination="BYZ-38-t0r" id="hzt-xX-sAB"/>
                     </connections>
                 </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="uR1-6e-k27">
+                    <connections>
+                        <action selector="showNextDay:" destination="BYZ-38-t0r" id="I1l-ow-b8w"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="tFU-D8-2zt">
+                    <connections>
+                        <action selector="showPrevDay:" destination="BYZ-38-t0r" id="UqC-43-GS7"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="135" y="128.75"/>
         </scene>

@@ -10,10 +10,11 @@ import UIKit;
 import CoreLocation;
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController
+{
 	
 	//MARK: Properties
-	let locationManager = CLLocationManager();
+	let mainModel = MainModel();
 
 	//MARK: Outlets
 	@IBOutlet weak var morningControl: GoldenHoursControl!
@@ -21,24 +22,45 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 	@IBOutlet weak var eveningControl: GoldenHoursControl!
 	@IBOutlet weak var locationDescription: UILabel!
 	
+	@IBOutlet weak var locationLocalTime: UILabel!
+	@IBOutlet weak var locationCurrentDayDate: UILabel!
+	
 	//MARK: Actions
-	@IBAction func showSettings(_ sender: UITapGestureRecognizer) {
-	}
-	
-	
-	
-	func getLocation()
+	@IBAction func showSettings(_ sender: UITapGestureRecognizer)
 	{
-		locationManager.delegate = self;
-		locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-		locationManager.requestWhenInUseAuthorization();
-		locationManager.startUpdatingLocation();
-		locationManager.requestLocation();
 	}
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		getLocation();
+	@IBAction func showPrevDay(_ sender: UISwipeGestureRecognizer)
+	{
+		mainModel.currentLocation?.prevDay();
+		setLocationDay(mainModel.currentLocation!.currentDay!);
+	}
+	
+	@IBAction func showNextDay(_ sender: UISwipeGestureRecognizer)
+	{
+		mainModel.currentLocation?.nextDay();
+		setLocationDay(mainModel.currentLocation!.currentDay!);
+	}
+	
+	
+	
+	override func viewDidLoad()
+	{
+		super.viewDidLoad();
+		
+		mainModel.getLocation
+		{
+				result in
+			
+				if (result == true)
+				{
+					self.setLocation(self.mainModel.currentLocation!);
+				}
+				else
+				{
+					// there was an error that should be handled
+				}
+		}
 		
 	}
 
@@ -47,64 +69,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 		// Dispose of any resources that can be recreated.
 	}
 	
-
-
-
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-	{
-		print("Got user location");
-		locationManager.stopUpdatingLocation();
-		
-		let userLocation:CLLocation = locations[0];
-		
-		CLGeocoder().reverseGeocodeLocation(userLocation)
-		{ (placemarks, error) in
-			
-			var city:String?;
-			var zip:String?;
-			
-			// Check for errors
-			if (error != nil)
-			{
-				print(error ?? "Unknown Error");
-			}
-			else
-			{
-				
-				// Get the first placemark from the placemarks array.
-				// This is your address object
-				if let placemark = placemarks?[0]
-				{
-					city = placemark.locality;
-					zip = placemark.postalCode;
-
-				}
-				
-			}
-			print("\(zip) \(city)");
-
-			
-			let location = LocationModel(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, description: city, zip: zip);
-			
-			self.locationDescription.text = location.description;
-			let info = location.currentDay!;
-			
-			self.morningControl.setHours(before: info.morningBlueHourModel!.formatted, sun: info.sunriseModel!.formatted, after: info.morningGoldenHourModel!.formatted);
-			
-			self.eveningControl.setHours(before: info.eveningGoldenHourModel!.formatted, sun: info.sunsetModel!.formatted, after: info.eveningBlueHourModel!.formatted);
-			
-		}
 	
+	func setLocation(_ location: LocationModel)
+	{
+		self.locationDescription.text = location.description;
+		self.locationLocalTime.text = location.currentLocalTime!;
 		
+		setLocationDay(location.currentDay!);
+	
 	}
 	
-	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+	func setLocationDay(_ info: DayModel)
 	{
-		print("location error");
+		self.morningControl.setHours(before: info.morningBlueHourModel!.formatted, sun: info.sunriseModel!.formatted, after: info.morningGoldenHourModel!.formatted);
+		
+		self.eveningControl.setHours(before: info.eveningGoldenHourModel!.formatted, sun: info.sunsetModel!.formatted, after: info.eveningBlueHourModel!.formatted);
+		
+		self.locationCurrentDayDate.text = info.dateFormatted;
 	}
 	
-
-
 
 }
 
