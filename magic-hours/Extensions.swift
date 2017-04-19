@@ -16,3 +16,15 @@ extension Double
 		return (self * divisor).rounded() / divisor;
 	}
 }
+
+extension Date
+{
+	func dateOnlyString() -> String
+	{
+		let timeFormatter = DateFormatter();
+		timeFormatter.dateStyle = .medium;
+		timeFormatter.timeStyle = .none;
+		
+		return timeFormatter.string(from: self);
+	}
+}

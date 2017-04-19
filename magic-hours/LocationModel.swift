@@ -19,7 +19,11 @@ class LocationModel
 	var currentLocalTime: String? = nil;
 	
 	var currentDay: DayModel? = nil;
-	var days = [Date: DayModel]();
+	var days = [String: DayModel]();
+	
+	var weatherDays = [String: WeatherModel]();
+	var weatherForeCastIsKnown = false;
+	var weatherForeCastIsInProgress = false;
 	
 	let calendar = Calendar.current;
 	let timeFormatter:DateFormatter;
@@ -64,6 +68,40 @@ class LocationModel
 		addDay(date: nil);
 	}
 	
+
+	
+	func fetchWeatherForecast(completion: @escaping () -> Void)
+	{
+		if (weatherForeCastIsInProgress)
+		{
+			return;
+		}
+		
+		weatherForeCastIsInProgress = true;
+		
+		WeatherForeCast.fetch(lat:latitude, lon:longitude)
+		{
+			days in
+			
+			self.weatherDays = days;
+			self.weatherForeCastIsInProgress = false;
+			self.weatherForeCastIsKnown = true;
+			
+			completion();
+		}
+	}
+	
+	func containsWeather(for date: Date) -> Bool
+	{
+		print("contains weather for " + date.dateOnlyString());
+		return weatherDays[date.dateOnlyString()] != nil;
+	}
+	
+	func getWeather(for date: Date) -> WeatherModel?
+	{
+		return weatherDays[date.dateOnlyString()]
+	}
+	
 	func updateLocalTime()
 	{
 		let localTimeDate = Date().addingTimeInterval(offsetFromLocalTime!);
@@ -91,14 +129,16 @@ class LocationModel
 		
 		let newDate = currentDay!.date.addingTimeInterval(secondsFromCurrentDay);
 		
-		if let newDay = days[newDate]
+		print(newDate);
+		
+		if let newDay = days[newDate.dateOnlyString()]
 		{
 			currentDay = newDay;
 		}
 		else
 		{
 			addDay(date: newDate);
-			currentDay = days[newDate];
+			currentDay = days[newDate.dateOnlyString()];
 		}
 	}
 	
@@ -121,7 +161,7 @@ class LocationModel
 			currentDay = day;
 		}
 		
-		days[dateOnly] = day;
+		days[dateOnly.dateOnlyString()] = day;
 
 	}
 

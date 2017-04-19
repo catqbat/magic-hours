@@ -34,22 +34,22 @@
                                 </connections>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hEp-Zw-U9b">
-                                <rect key="frame" x="8" y="70" width="240" height="251.5"/>
+                                <rect key="frame" x="8" y="70" width="352" height="359.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:28" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYu-1w-C3X">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="39.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="352" height="39.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="katowice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bmt-ap-gZH">
-                                        <rect key="frame" x="0.0" y="47.5" width="240" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="47.5" width="352" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RbF-Ix-TEw" customClass="GoldenHoursControl" customModule="magic_hours" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="76" width="240" height="60"/>
+                                        <rect key="frame" x="0.0" y="76" width="352" height="60"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="time" value="morning"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="beforeHour" value="07:00"/>
@@ -58,7 +58,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-S1-l6p" customClass="GoldenHoursControl" customModule="magic_hours" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="144" width="240" height="60"/>
+                                        <rect key="frame" x="0.0" y="144" width="352" height="60"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="time" value="evening"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="beforeHour" value="19:00"/>
@@ -66,8 +66,30 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="afterHour" value="20:00"/>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hat-US-VF9">
+                                        <rect key="frame" x="0.0" y="212" width="352" height="100"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="na" translatesAutoresizingMaskIntoConstraints="NO" id="50x-tc-tMP">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="UCI-8Z-jGE"/>
+                                                    <constraint firstAttribute="width" constant="100" id="aUk-YB-A3n"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="weather info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5h-UU-wKG">
+                                                <rect key="frame" x="112" y="0.0" width="240" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="cNo-CP-wyK"/>
+                                                    <constraint firstAttribute="width" constant="240" id="jGj-WW-BTo"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 April" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRx-ZN-nsA">
-                                        <rect key="frame" x="0.0" y="212" width="240" height="39.5"/>
+                                        <rect key="frame" x="0.0" y="320" width="352" height="39.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -94,6 +116,8 @@
                         <outlet property="locationDescription" destination="Bmt-ap-gZH" id="k3R-R6-iIe"/>
                         <outlet property="locationLocalTime" destination="DYu-1w-C3X" id="AIG-HC-49K"/>
                         <outlet property="morningControl" destination="RbF-Ix-TEw" id="HVi-g2-uk7"/>
+                        <outlet property="weatherIcon" destination="50x-tc-tMP" id="SQN-fi-ACp"/>
+                        <outlet property="weatherSummary" destination="k5h-UU-wKG" id="z31-hB-FEJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -117,6 +141,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="na" width="87" height="60"/>
         <image name="settings" width="64" height="64"/>
     </resources>
 </document>
