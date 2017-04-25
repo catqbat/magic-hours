@@ -15,16 +15,19 @@ class WeatherModel
 	
 	let icon: String;
 	let summary: String;
-	let tempMin: Double;
-	let tempMax: Double;
+	let tempMin: Int;
+	let tempMax: Int;
+	let temperatureInfo: String;
 	
 	init(date: Date, icon: String, summary: String, tempMin: Double, tempMax: Double)
 	{
 		self.date = date;
 		self.icon = icon;
 		self.summary = summary;
-		self.tempMin = tempMin;
-		self.tempMax = tempMax;
+		self.tempMin = Int(round(tempMin));
+		self.tempMax = Int(round(tempMax));
+		
+		self.temperatureInfo = "\(L10n.from) \(self.tempMin) \(L10n.to) \(self.tempMax) \(global.getTemperatureUnits())";
 	
 		print("\(date.dateOnlyString()), \(icon), \(summary), \(tempMin)-\(tempMax)");
 	}

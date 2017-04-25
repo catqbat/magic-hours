@@ -40,7 +40,6 @@ class WeatherForeCast
 					{
 						let time = dayData["time"] as! Double;
 						let date = Date(timeIntervalSince1970: time);
-						//let dayDate = Calendar.current.dateComponents([.day, .month, .year], from: date);
 						
 						let icon = dayData["icon"] as! String;
 						let summary = dayData["summary"] as! String;

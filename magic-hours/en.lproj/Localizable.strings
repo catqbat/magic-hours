@@ -1,0 +1,11 @@
+/* 
+  Localized.strings
+  magic-hours
+
+  Created by Agata on 24/04/2017.
+  Copyright © 2017 Agata. All rights reserved.
+*/
+"from" = "from";
+"to" = "to";
+"checking_forecast" = "checking weather forecast...";
+"forecast_unavailable" = "weather forecast unavailable";

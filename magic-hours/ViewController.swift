@@ -49,6 +49,7 @@ class ViewController: UIViewController
 	override func viewDidLoad()
 	{
 		super.viewDidLoad();
+	
 		weatherSummary.numberOfLines = 3;
 		weatherSummary.lineBreakMode = NSLineBreakMode.byWordWrapping;
 		
@@ -83,13 +84,13 @@ class ViewController: UIViewController
 	
 	func setFetchingWeather()
 	{
-		weatherSummary.text = "fetching weather..";
+		weatherSummary.text = L10n.checkingForecast;
 		weatherIcon.image = getWeatherIcon("na");
 	}
 	
 	func setWeatherUnavailable()
 	{
-		weatherSummary.text = "weather unavailable..";
+		weatherSummary.text = L10n.forecastUnavailable;
 		weatherIcon.image = getWeatherIcon("na");
 	}
 	
@@ -108,7 +109,7 @@ class ViewController: UIViewController
 	
 	func setWeather(_ weather: WeatherModel)
 	{
-		weatherSummary.text = weather.summary;
+		weatherSummary.text = weather.temperatureInfo + "\n" + weather.summary;
 		weatherIcon.image = getWeatherIcon(weather.icon);
 	}
 	
