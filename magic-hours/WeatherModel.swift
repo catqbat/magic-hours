@@ -27,7 +27,9 @@ class WeatherModel
 		self.tempMin = Int(round(tempMin));
 		self.tempMax = Int(round(tempMax));
 		
-		self.temperatureInfo = "\(L10n.from) \(self.tempMin) \(L10n.to) \(self.tempMax) \(global.getTemperatureUnits())";
+		let units = global.getTemperatureUnits();
+		
+		self.temperatureInfo = "\(L10n.from) \(self.tempMin) \(units) \(L10n.to) \(self.tempMax) \(units)";
 	
 		print("\(date.dateOnlyString()), \(icon), \(summary), \(tempMin)-\(tempMax)");
 	}

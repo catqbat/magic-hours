@@ -28,3 +28,18 @@ extension Date
 		return timeFormatter.string(from: self);
 	}
 }
+
+extension String
+{
+	func trim(_ charactersCount: Int) -> String
+	{
+		if (self.characters.count <= charactersCount)
+		{
+			return self;
+		}
+		
+		let start = self.startIndex;
+		let end = self.index(self.endIndex, offsetBy: 0 - charactersCount + 1);
+		return self[start..<end];
+	}
+}

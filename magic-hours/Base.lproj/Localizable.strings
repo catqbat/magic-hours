@@ -9,3 +9,7 @@
 "to" = "to";
 "checking_forecast" = "checking weather forecast...";
 "forecast_unavailable" = "weather forecast unavailable";
+"golden_hour" = "golden hour";
+"blue_hour" = "blue hour";
+"sunrise" = "sunrise";
+"sunset" = "sunset";
