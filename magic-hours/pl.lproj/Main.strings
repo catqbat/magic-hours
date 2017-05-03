@@ -10,3 +10,9 @@
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "9mY-HF-gjZ"; */
 "9mY-HF-gjZ.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "HrE-L5-TrT"; */
+"HrE-L5-TrT.text" = "Label";
+
+/* Class = "UILabel"; text = "polar day"; ObjectID = "MOI-Bj-Pxk"; */
+"MOI-Bj-Pxk.text" = "polar day";

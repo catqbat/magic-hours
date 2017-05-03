@@ -1,0 +1,20 @@
+/* 
+  Localized.strings
+  magic-hours
+
+  Created by Agata on 24/04/2017.
+  Copyright © 2017 Agata. All rights reserved.
+*/
+"from" = "od";
+"to" = "do";
+"checking_forecast" = "sprawdzanie prognozy pogody...";
+"forecast_unavailable" = "prognoza pogody niedostępna";
+"golden_hour" = "złota godzina";
+"blue_hour" = "niebieska godzina";
+"sunrise" = "wschód słońca";
+"sunset" = "zachód słońca";
+"Warsaw" = "Warszawa";
+"New_York" = "Nowy Jork";
+"Tokyo" = "Tokio";
+"polar_day" = "dzień polarny";
+"polar_night" = "noc polarna";

@@ -22,12 +22,22 @@ enum L10n {
   static let from = L10n.tr("from")
   /// golden hour
   static let goldenHour = L10n.tr("golden_hour")
+  /// New York
+  static let newYork = L10n.tr("New_York")
+  /// polar day
+  static let polarDay = L10n.tr("polar_day")
+  /// polar night
+  static let polarNight = L10n.tr("polar_night")
   /// sunrise
   static let sunrise = L10n.tr("sunrise")
   /// sunset
   static let sunset = L10n.tr("sunset")
   /// to
   static let to = L10n.tr("to")
+  /// Tokyo
+  static let tokyo = L10n.tr("Tokyo")
+  /// Warsaw
+  static let warsaw = L10n.tr("Warsaw")
 }
 
 extension L10n {

@@ -14,11 +14,25 @@ class ViewController: UIViewController
 {
 	
 	//MARK: Properties
-	let mainModel = MainModel();
+	let mainModel:MainModel = MainModel();
+	
 	var timeline:TimelineView? = nil;
-
-
+		
+	var ghIcon:UIImage? = nil;
+	var bhIcon:UIImage? = nil;
+	var sunriseIcon:UIImage? = nil;
+	var sunsetIcon:UIImage? = nil;
+	
+	var polarDayIcon:UIImage? = nil;
+	var polarNightIcon:UIImage? = nil;
+	
+	
 	//MARK: Outlets
+	@IBOutlet weak var locationsList: UICollectionView!;
+	@IBOutlet weak var polarDayNightLabel: UILabel!
+	@IBOutlet weak var polarDayNightImage: UIImageView!
+	@IBOutlet weak var polarDayNightStackView: UIStackView!
+
 	@IBOutlet weak var morningControl: GoldenHoursControl!
 	
 	@IBOutlet weak var eveningControl: GoldenHoursControl!
@@ -53,13 +67,31 @@ class ViewController: UIViewController
 	}
 	
 	
-	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad();
 		
+		polarDayNightStackView.isHidden = true;
+		
 		weatherSummary.numberOfLines = 0;
 		weatherSummary.lineBreakMode = NSLineBreakMode.byWordWrapping;
+		
+		let bundle = Bundle(for: type(of: self));
+		
+		ghIcon = UIImage(named: "golden_hour", in: bundle, compatibleWith: self.traitCollection);
+		bhIcon = UIImage(named: "blue_hour", in: bundle, compatibleWith: self.traitCollection);
+		sunriseIcon = UIImage(named: "sunrise", in: bundle, compatibleWith: self.traitCollection);
+		sunsetIcon = UIImage(named: "sunset", in: bundle, compatibleWith: self.traitCollection);
+		
+		polarDayIcon = UIImage(named: "polar_day", in: bundle, compatibleWith: self.traitCollection)!;
+		polarNightIcon = UIImage(named: "polar_night", in: bundle, compatibleWith: self.traitCollection);
+
+		mainModel.getLocations(delegate: setLocation);
+	
+		locationsList.allowsSelection = true;
+		locationsList.dataSource = mainModel.dataSource!;
+		locationsList.delegate = mainModel.dataSource!;
+		locationsList.reloadData();
 		
 		setupTimelineControl();
 		getCurrentLocation();
@@ -73,22 +105,16 @@ class ViewController: UIViewController
 		timeline!.titleLabelColor = UIColor.white;
 		timeline!.detailLabelColor = UIColor.black;
 		
-		
 		timeLineScrollView.addSubview(timeline!);
 		
 		timeLineScrollView.addConstraints([
 			NSLayoutConstraint(item: timeline!, attribute: .left, relatedBy: .equal, toItem: timeLineScrollView, attribute: .left, multiplier: 1.0, constant: 0),
-			
-//			NSLayoutConstraint(item: timeline!, attribute: .bottom, relatedBy: .lessThanOrEqual, toItem: timeLineScrollView, attribute: .bottom, multiplier: 1.0, constant: 0),
-			
 			NSLayoutConstraint(item: timeline!, attribute: .top, relatedBy: .equal, toItem: timeLineScrollView, attribute: .top, multiplier: 1.0, constant: 0),
-			
-//			NSLayoutConstraint(item: timeline!, attribute: .right, relatedBy: .equal, toItem: timeLineScrollView, attribute: .right, multiplier: 1.0, constant: 0),
-			
 			NSLayoutConstraint(item: timeline!, attribute: .width, relatedBy: .equal, toItem: timeLineScrollView, attribute: .width, multiplier: 1.0, constant: 0),
-			
 			NSLayoutConstraint(item: timeline!, attribute: .centerX, relatedBy: .equal, toItem: timeLineScrollView, attribute: .centerX, multiplier: 1.0, constant: 0)
-			])
+			]);
+		
+	
 	}
 	
 	override func viewWillAppear(_ animated: Bool)
@@ -147,7 +173,8 @@ class ViewController: UIViewController
 	
 	func setLocation(_ location: LocationModel)
 	{
-		self.locationDescription.text = location.description;
+		self.mainModel.currentLocation = location;
+		self.locationDescription.text = location.name;
 		self.locationLocalTime.text = location.currentLocalTime!;
 		setLocationDay(location.currentDay!);
 	}
@@ -218,38 +245,43 @@ class ViewController: UIViewController
 	
 	func setLocationDay(_ info: DayModel)
 	{
-//		self.morningControl.setHours(before: info.morningBlueHourModel!.formatted, sun: info.sunriseModel!.formatted, after: info.morningGoldenHourModel!.formatted);
-//		
-//		self.eveningControl.setHours(before: info.eveningGoldenHourModel!.formatted, sun: info.sunsetModel!.formatted, after: info.eveningBlueHourModel!.formatted);
 		
 		self.currentDateControl.date = info.date;
 		
-		let bundle = Bundle(for: type(of: self));
-		//let startIcon = UIImage(named: "morning", in: bundle, compatibleWith: self.traitCollection);
-		//let endIcon = UIImage(named: "evening", in: bundle, compatibleWith: self.traitCollection);
-		
-		let ghIcon = UIImage(named: "golden_hour", in: bundle, compatibleWith: self.traitCollection);
-		let bhIcon = UIImage(named: "blue_hour", in: bundle, compatibleWith: self.traitCollection);
-		let sunriseIcon = UIImage(named: "sunrise", in: bundle, compatibleWith: self.traitCollection);
-		let sunsetIcon = UIImage(named: "sunset", in: bundle, compatibleWith: self.traitCollection);
-
-		
-		timeline!.timeFrames = [
-			//TimeFrame(text: " ", date: "", image: startIcon),
-			TimeFrame(text: L10n.blueHour + "\n", date: info.morningBlueHourModel!.formatted, image: bhIcon),
-			TimeFrame(text: L10n.sunrise + "\n", date: info.sunriseModel!.formatted, image: sunriseIcon),
-			TimeFrame(text: L10n.goldenHour + "\n\n\n", date: info.morningGoldenHourModel!.formatted,  image: ghIcon),
+		if (info.type == .regular)
+		{
+			polarDayNightStackView.isHidden = true;
+			timeline!.isHidden = false;
 			
-			TimeFrame(text: L10n.goldenHour + "\n", date: info.eveningGoldenHourModel!.formatted, image: ghIcon),
-			TimeFrame(text: L10n.sunset + "\n", date: info.sunsetModel!.formatted, image: sunsetIcon),
-			TimeFrame(text: L10n.blueHour + "\n", date: info.eveningBlueHourModel!.formatted, image: bhIcon),
-			//TimeFrame(text: "", date: "", image: endIcon),
-		];
+			timeline!.timeFrames = [
+				//TimeFrame(text: " ", date: "", image: startIcon),
+				TimeFrame(text: L10n.blueHour + "\n", date: info.morningBlueHourModel!.formatted, image: bhIcon),
+				TimeFrame(text: L10n.sunrise + "\n", date: info.sunriseModel!.formatted, image: sunriseIcon),
+				TimeFrame(text: L10n.goldenHour + "\n\n\n", date: info.morningGoldenHourModel!.formatted,  image: ghIcon),
+				
+				TimeFrame(text: L10n.goldenHour + "\n", date: info.eveningGoldenHourModel!.formatted, image: ghIcon),
+				TimeFrame(text: L10n.sunset + "\n", date: info.sunsetModel!.formatted, image: sunsetIcon),
+				TimeFrame(text: L10n.blueHour + "\n", date: info.eveningBlueHourModel!.formatted, image: bhIcon),
+				//TimeFrame(text: "", date: "", image: endIcon),
+			];
+		}
+		else
+		{
+			polarDayNightStackView.isHidden = false;
+			timeline!.isHidden = true;
 			
-			
+			if (info.type == .polarDay)
+			{
+				polarDayNightImage.image = polarDayIcon;
+				polarDayNightLabel.text = L10n.polarDay;
+			}
+			else
+			{
+				polarDayNightImage.image = polarNightIcon;
+				polarDayNightLabel.text = L10n.polarNight;
+			}
+		}
 		
-		
-		//setting weather info
 		setWeather();
 	}
 	

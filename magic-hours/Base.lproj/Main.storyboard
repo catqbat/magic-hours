@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,8 +23,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="O15-Y5-kVI">
-                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <rect key="frame" x="169" y="50" width="37" height="567"/>
                             </activityIndicatorView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="XdK-D4-uuc">
+                                <rect key="frame" x="72" y="214" width="232" height="200.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKp-Iw-zcn">
+                                        <rect key="frame" x="0.0" y="0.0" width="232" height="200"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="polar_day" translatesAutoresizingMaskIntoConstraints="NO" id="21e-yY-MLY">
+                                                <rect key="frame" x="0.0" y="0.0" width="172" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="pky-e7-aff"/>
+                                                    <constraint firstAttribute="width" constant="172" id="v8Q-lV-xBv"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xj5-DM-3Bp">
+                                                <rect key="frame" x="172" y="0.0" width="60" height="200"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="gQo-CR-zbO"/>
+                                                    <constraint firstAttribute="height" constant="200" id="udy-9U-Obi"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="polar day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOI-Bj-Pxk">
+                                        <rect key="frame" x="0.0" y="180" width="232" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="yKp-Iw-zcn" firstAttribute="centerX" secondItem="XdK-D4-uuc" secondAttribute="centerX" id="Fhd-9M-DQ0"/>
+                                </constraints>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mY-HF-gjZ">
                                 <rect key="frame" x="337" y="72" width="30" height="30"/>
                                 <constraints>
@@ -55,24 +90,29 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hat-US-VF9">
-                                        <rect key="frame" x="0.0" y="53" width="359" height="176"/>
+                                        <rect key="frame" x="0.0" y="53" width="359" height="72"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" distribution="fillEqually" alignment="top" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="qmh-BA-7vV" customClass="FormattedDateControl" customModule="magic_hours" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="116.5" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="114" height="50.5"/>
+                                                <gestureRecognizers/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="dayOfWeek" value="MON"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="day" value="07"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="month" value="OCT"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="uR1-6e-k27" appends="YES" id="W33-tN-5e6"/>
+                                                    <outletCollection property="gestureRecognizers" destination="uR1-6e-k27" appends="YES" id="Fkn-TW-OaQ"/>
+                                                </connections>
                                             </stackView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="na" translatesAutoresizingMaskIntoConstraints="NO" id="50x-tc-tMP">
-                                                <rect key="frame" x="121.5" y="0.0" width="100" height="60"/>
+                                                <rect key="frame" x="119" y="0.0" width="100" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="d5Z-dG-TP3"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="243" text="weather info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5h-UU-wKG">
-                                                <rect key="frame" x="226.5" y="0.0" width="132.5" height="14.5"/>
+                                                <rect key="frame" x="224" y="0.0" width="135" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -81,33 +121,96 @@
                                         <color key="backgroundColor" red="0.4693027442518003" green="0.97934550046920776" blue="0.74607542267289884" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </stackView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="wBa-LN-xvu">
-                                        <rect key="frame" x="0.0" y="241" width="359" height="256"/>
+                                        <rect key="frame" x="0.0" y="137" width="359" height="360"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="wBa-LN-xvu" secondAttribute="height" multiplier="359:360" id="DRG-rD-t9a"/>
+                                        </constraints>
                                     </scrollView>
                                 </subviews>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="wBa-LN-xvu" firstAttribute="top" secondItem="hEp-Zw-U9b" secondAttribute="top" constant="137" id="bs3-D3-EPP"/>
+                                </constraints>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="uR1-6e-k27" appends="YES" id="BJM-AG-UsN"/>
                                     <outletCollection property="gestureRecognizers" destination="tFU-D8-2zt" appends="YES" id="8dG-lg-3rX"/>
+                                    <outletCollection property="gestureRecognizers" destination="uR1-6e-k27" appends="YES" id="BJM-AG-UsN"/>
                                 </connections>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdz-C8-TqZ">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HVv-Wn-vY3">
+                                        <rect key="frame" x="8" y="0.0" width="359" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="mrT-se-QwT"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CQU-wR-DIT">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LocationCell" id="PMI-DW-dec" customClass="LocationCell" customModule="magic_hours" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HrE-L5-TrT">
+                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="50"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstItem="HrE-L5-TrT" firstAttribute="top" secondItem="PMI-DW-dec" secondAttribute="top" id="Pxj-8k-r2Q"/>
+                                                    <constraint firstItem="HrE-L5-TrT" firstAttribute="leading" secondItem="PMI-DW-dec" secondAttribute="leading" id="S1l-oP-LfS"/>
+                                                    <constraint firstAttribute="bottom" secondItem="HrE-L5-TrT" secondAttribute="bottom" id="hTL-yk-ihN"/>
+                                                    <constraint firstAttribute="trailing" secondItem="HrE-L5-TrT" secondAttribute="trailing" constant="8" id="rYi-iq-O8C"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="locationNameLabel" destination="HrE-L5-TrT" id="ioe-K5-V6R"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="HVv-Wn-vY3" firstAttribute="top" secondItem="cdz-C8-TqZ" secondAttribute="top" id="7bU-w5-Z6e"/>
+                                    <constraint firstItem="HVv-Wn-vY3" firstAttribute="leading" secondItem="cdz-C8-TqZ" secondAttribute="leading" constant="8" id="HIQ-HN-h6e"/>
+                                    <constraint firstAttribute="trailing" secondItem="HVv-Wn-vY3" secondAttribute="trailing" constant="8" id="ep1-R8-ZmA"/>
+                                    <constraint firstAttribute="height" constant="50" id="wSi-jC-SRm"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.96939951181411743" green="0.77824312448501587" blue="0.29697680473327637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cdz-C8-TqZ" secondAttribute="bottom" id="14f-Mh-mPS"/>
                             <constraint firstAttribute="trailing" secondItem="9mY-HF-gjZ" secondAttribute="trailing" constant="8" id="AGH-Ww-XxW"/>
+                            <constraint firstItem="XdK-D4-uuc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LMc-LC-6K3"/>
+                            <constraint firstItem="XdK-D4-uuc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="Rs6-dl-Hqc"/>
+                            <constraint firstItem="cdz-C8-TqZ" firstAttribute="top" secondItem="O15-Y5-kVI" secondAttribute="bottom" id="Uu8-wY-tkb"/>
                             <constraint firstItem="hEp-Zw-U9b" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="Y0j-HC-tzd"/>
+                            <constraint firstItem="cdz-C8-TqZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fWu-IV-eeb"/>
                             <constraint firstItem="9mY-HF-gjZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="gbp-FL-J68"/>
                             <constraint firstItem="O15-Y5-kVI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iGe-cJ-wcl"/>
                             <constraint firstItem="O15-Y5-kVI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kYC-DM-Ivk"/>
                             <constraint firstAttribute="trailing" secondItem="hEp-Zw-U9b" secondAttribute="trailing" constant="8" id="kaN-4i-atV"/>
                             <constraint firstItem="hEp-Zw-U9b" firstAttribute="top" secondItem="9mY-HF-gjZ" secondAttribute="bottom" constant="8" id="lE9-kY-N99"/>
                             <constraint firstAttribute="bottom" secondItem="hEp-Zw-U9b" secondAttribute="bottom" constant="60" id="mli-lP-wxl"/>
+                            <constraint firstAttribute="trailing" secondItem="cdz-C8-TqZ" secondAttribute="trailing" id="n0g-F0-LKQ"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                <color key="value" red="0.96939951179999995" green="0.77824312449999999" blue="0.29697680469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" red="0.91884142160415649" green="0.042981070101024373" blue="0.17651277703689444" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                <color key="value" red="0.91884142160415649" green="0.25355187058448792" blue="0.17157217860221863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" red="0.96939951179999995" green="0.77824312449999999" blue="0.29697680469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
                                 <real key="value" value="0.02"/>
@@ -120,18 +223,17 @@
                         <outlet property="currentDateControl" destination="qmh-BA-7vV" id="ySw-SD-lWY"/>
                         <outlet property="locationDescription" destination="Bmt-ap-gZH" id="k3R-R6-iIe"/>
                         <outlet property="locationLocalTime" destination="DYu-1w-C3X" id="AIG-HC-49K"/>
+                        <outlet property="locationsList" destination="HVv-Wn-vY3" id="f3t-ne-YX2"/>
                         <outlet property="mainStack" destination="hEp-Zw-U9b" id="SHf-XQ-9AE"/>
+                        <outlet property="polarDayNightImage" destination="21e-yY-MLY" id="3Ly-B1-a4C"/>
+                        <outlet property="polarDayNightLabel" destination="MOI-Bj-Pxk" id="ZzX-Ye-K9l"/>
+                        <outlet property="polarDayNightStackView" destination="XdK-D4-uuc" id="Qgh-7Q-opk"/>
                         <outlet property="timeLineScrollView" destination="wBa-LN-xvu" id="SAp-dx-jAB"/>
                         <outlet property="weatherIcon" destination="50x-tc-tMP" id="SQN-fi-ACp"/>
                         <outlet property="weatherSummary" destination="k5h-UU-wKG" id="z31-hB-FEJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="uR1-6e-k27">
-                    <connections>
-                        <action selector="showNextDay:" destination="BYZ-38-t0r" id="I1l-ow-b8w"/>
-                    </connections>
-                </swipeGestureRecognizer>
                 <swipeGestureRecognizer direction="left" id="tFU-D8-2zt">
                     <connections>
                         <action selector="showPrevDay:" destination="BYZ-38-t0r" id="UqC-43-GS7"/>
@@ -142,8 +244,13 @@
                         <segue destination="L4u-8D-AdC" kind="show" id="0pQ-3Y-xwE"/>
                     </connections>
                 </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="uR1-6e-k27">
+                    <connections>
+                        <action selector="showNextDay:" destination="BYZ-38-t0r" id="I1l-ow-b8w"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="339" y="68"/>
+            <point key="canvasLocation" x="364" y="67.916041979010501"/>
         </scene>
         <!--Location View Controller-->
         <scene sceneID="l1q-nL-Irs">
@@ -161,7 +268,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eh9-FU-kCp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1106" y="94"/>
+            <point key="canvasLocation" x="1138" y="68"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o2t-pt-Jba">
@@ -177,11 +284,29 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vpd-Ge-psv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-536" y="68"/>
+            <point key="canvasLocation" x="-358" y="68"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="UxN-7z-FZq">
+            <objects>
+                <viewController id="tft-rs-9O9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5bI-nn-F5o"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hul-ZD-hrP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AgN-hn-OLX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GWu-WI-Yjh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
         <image name="na" width="87" height="60"/>
+        <image name="polar_day" width="87" height="60"/>
         <image name="settings" width="256" height="256"/>
     </resources>
 </document>

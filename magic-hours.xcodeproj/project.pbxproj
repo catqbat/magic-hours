@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		495ACD171EB8E1EB00B9C7FC /* LocationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495ACD161EB8E1EB00B9C7FC /* LocationDataSource.swift */; };
+		495ACD191EB8E48400B9C7FC /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495ACD181EB8E48400B9C7FC /* LocationCell.swift */; };
 		495B63431E9BED17000EF382 /* global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B63421E9BED17000EF382 /* global.swift */; };
 		495B63451E9BF049000EF382 /* MagicHourModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B63441E9BF049000EF382 /* MagicHourModel.swift */; };
 		495B63471E9BF0D0000EF382 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B63461E9BF0D0000EF382 /* Extensions.swift */; };
@@ -138,6 +140,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		495ACD161EB8E1EB00B9C7FC /* LocationDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataSource.swift; sourceTree = "<group>"; };
+		495ACD181EB8E48400B9C7FC /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		495B63421E9BED17000EF382 /* global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = global.swift; sourceTree = "<group>"; };
 		495B63441E9BF049000EF382 /* MagicHourModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagicHourModel.swift; sourceTree = "<group>"; };
 		495B63461E9BF0D0000EF382 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -387,6 +391,8 @@
 				49E8D39B1E9543F4001CF8CF /* DayModel.swift */,
 				495B63441E9BF049000EF382 /* MagicHourModel.swift */,
 				49F0B31A1EA7AD1300814207 /* WeatherModel.swift */,
+				495ACD161EB8E1EB00B9C7FC /* LocationDataSource.swift */,
+				495ACD181EB8E48400B9C7FC /* LocationCell.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -588,6 +594,7 @@
 				49F0B31B1EA7AD1300814207 /* WeatherModel.swift in Sources */,
 				49E8D36B1E953B81001CF8CF /* TimezoneMapper-call33.swift in Sources */,
 				49BD9AA01EB3B3B500626CA1 /* LocationViewController.swift in Sources */,
+				495ACD191EB8E48400B9C7FC /* LocationCell.swift in Sources */,
 				49E8D3811E953B81001CF8CF /* TimezoneMapper-init4.swift in Sources */,
 				49E8D35D1E953B81001CF8CF /* TimezoneMapper-call19.swift in Sources */,
 				49E8D3991E953B81001CF8CF /* TimezoneMapper-initPolyArray.swift in Sources */,
@@ -628,6 +635,7 @@
 				49E8D3741E953B81001CF8CF /* TimezoneMapper-call42.swift in Sources */,
 				49E8D35F1E953B81001CF8CF /* TimezoneMapper-call21.swift in Sources */,
 				49E8D3721E953B81001CF8CF /* TimezoneMapper-call40.swift in Sources */,
+				495ACD171EB8E1EB00B9C7FC /* LocationDataSource.swift in Sources */,
 				49E8D3701E953B81001CF8CF /* TimezoneMapper-call38.swift in Sources */,
 				49E8D3751E953B81001CF8CF /* TimezoneMapper-call43.swift in Sources */,
 				499F0C301E9D4BEC0006B2F8 /* ViewController.swift in Sources */,

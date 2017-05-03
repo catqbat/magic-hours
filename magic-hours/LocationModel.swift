@@ -9,11 +9,54 @@
 import Foundation;
 import CoreLocation;
 
-class LocationModel
+class LocationModel: NSObject, NSCoding
 {
-	var latitude: Double;
-	var longitude: Double;
-	var description: String;
+	static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!;
+	static let ArchiveURL = DocumentsDirectory.appendingPathComponent("locations");
+	
+	struct PropertyKey
+	{
+		static let name = "name";
+		static let zip = "zip";
+		static let latitude = "latitude";
+		static let longitude = "longitude";
+	}
+	
+	func encode(with aCoder: NSCoder)
+	{
+		aCoder.encode(description, forKey: PropertyKey.name);
+		aCoder.encode(zip, forKey: PropertyKey.zip);
+		aCoder.encode(latitude, forKey: PropertyKey.latitude);
+		aCoder.encode(longitude, forKey: PropertyKey.longitude);
+	}
+	
+	required convenience init?(coder aDecoder: NSCoder)
+	{
+		
+		guard let lat = aDecoder.decodeObject(forKey: PropertyKey.name) as? Double
+		else
+		{
+			return nil;
+		}
+		
+		guard let lon = aDecoder.decodeObject(forKey: PropertyKey.longitude) as? Double
+			else
+		{
+			return nil;
+		}
+		
+		let name = aDecoder.decodeObject(forKey: PropertyKey.name) as! String;
+		let zip = aDecoder.decodeObject(forKey: PropertyKey.zip) as! String;
+		
+		// Must call designated initializer.
+		self.init(latitude: lat, longitude: lon, description: name, zip: zip);
+		
+	}
+
+	
+	var latitude: Double = 0;
+	var longitude: Double = 0;
+	var name: String = "";
 	var zip: String?;
 	var timeZone: TimeZone? = nil;
 	var currentLocalTime: String? = nil;
@@ -26,12 +69,14 @@ class LocationModel
 	var weatherForeCastIsInProgress = false;
 	
 	let calendar = Calendar.current;
-	let timeFormatter:DateFormatter;
+	var timeFormatter:DateFormatter = DateFormatter();
 	
 	var offsetFromLocalTime: TimeInterval? = nil;
 	
 	init(latitude: Double, longitude: Double, description: String?, zip: String?)
 	{
+		super.init();
+		
 		timeFormatter = DateFormatter();
 		timeFormatter.dateStyle = .none;
 		timeFormatter.timeStyle = .short;
@@ -41,11 +86,11 @@ class LocationModel
 		
 		if (description != nil)
 		{
-			self.description = description!;
+			self.name = description!;
 		}
 		else
 		{
-			self.description = "unknown location";
+			self.name = "unknown location";
 		}
 		
 		self.zip = zip;
