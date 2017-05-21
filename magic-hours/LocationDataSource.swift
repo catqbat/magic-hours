@@ -13,13 +13,26 @@ typealias SetLocationDelegate = (_ location : LocationModel)  -> Void
 
 class LocationDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
-	let locations: [LocationModel];
+	var locations: [LocationModel] = [];
 	let setSelectedLocation: SetLocationDelegate;
 	
 	init(locations: [LocationModel], delegate: @escaping SetLocationDelegate)
 	{
-		self.locations = locations;
+		self.locations = locations.sorted(by: { $0.name > $1.name });
 		self.setSelectedLocation = delegate;
+	}
+	
+	func sortLocations()
+	{
+		locations = locations.sorted(by: { $0.name < $1.name });
+	}
+	
+	func addLocation(_ location: LocationModel) -> Int?
+	{
+		locations.insert(location, at: 0);
+		sortLocations();
+		
+		return locations.index(of: location);
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int

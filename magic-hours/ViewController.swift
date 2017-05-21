@@ -12,9 +12,7 @@ import CoreLocation;
 
 class ViewController: UIViewController
 {
-	
 	//MARK: Properties
-	let mainModel:MainModel = MainModel();
 	
 	var timeline:TimelineView? = nil;
 		
@@ -28,14 +26,13 @@ class ViewController: UIViewController
 	
 	
 	//MARK: Outlets
+	@IBOutlet weak var datePicker: UIDatePicker!
 	@IBOutlet weak var locationsList: UICollectionView!;
+	@IBOutlet weak var menuButton: UIButton!
 	@IBOutlet weak var polarDayNightLabel: UILabel!
 	@IBOutlet weak var polarDayNightImage: UIImageView!
 	@IBOutlet weak var polarDayNightStackView: UIStackView!
 
-	@IBOutlet weak var morningControl: GoldenHoursControl!
-	
-	@IBOutlet weak var eveningControl: GoldenHoursControl!
 	@IBOutlet weak var currentDateControl: FormattedDateControl!
 	@IBOutlet weak var locationDescription: UILabel!
 	
@@ -49,27 +46,43 @@ class ViewController: UIViewController
 	
 	@IBOutlet weak var mainStack: UIStackView!
 	
-	//MARK: Actions
-	@IBAction func showSettings(_ sender: UITapGestureRecognizer)
+	@IBAction func showDateControl(_ sender: UITapGestureRecognizer)
 	{
+		datePicker.isHidden = false;
+	}
+
+	@IBAction func dateChanged(_ sender: UIDatePicker) {
+	}
+	@IBAction func showSettingsSidebar(_ sender: UIButton)
+	{
+		self.revealViewController().revealToggle(menuButton);
 	}
 	
 	@IBAction func showPrevDay(_ sender: UISwipeGestureRecognizer)
 	{
-		mainModel.currentLocation?.prevDay();
-		setLocationDay(mainModel.currentLocation!.currentDay!);
+		global.mainModel.currentLocation?.prevDay();
+		setLocationDay(global.mainModel.currentLocation!.currentDay!);
 	}
 	
 	@IBAction func showNextDay(_ sender: UISwipeGestureRecognizer)
 	{
-		mainModel.currentLocation?.nextDay();
-		setLocationDay(mainModel.currentLocation!.currentDay!);
+		global.mainModel.currentLocation?.nextDay();
+		setLocationDay(global.mainModel.currentLocation!.currentDay!);
 	}
 	
 	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad();
+		
+		if self.revealViewController() != nil
+		{
+			self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+		}
+		
+		datePicker.isHidden = true;
+		global.mainModel.navigateToFindLocationDelegate = self.navigateToFindLocation;
+		global.mainModel.updateViewForLocationDelegate = self.updateViewForLocation;
 		
 		polarDayNightStackView.isHidden = true;
 		
@@ -86,15 +99,36 @@ class ViewController: UIViewController
 		polarDayIcon = UIImage(named: "polar_day", in: bundle, compatibleWith: self.traitCollection)!;
 		polarNightIcon = UIImage(named: "polar_night", in: bundle, compatibleWith: self.traitCollection);
 
-		mainModel.getLocations(delegate: setLocation);
+		global.mainModel.getLocations(delegate: setLocation);
 	
 		locationsList.allowsSelection = true;
-		locationsList.dataSource = mainModel.dataSource!;
-		locationsList.delegate = mainModel.dataSource!;
+		locationsList.dataSource = global.mainModel.dataSource!;
+		locationsList.delegate = global.mainModel.dataSource!;
 		locationsList.reloadData();
 		
 		setupTimelineControl();
 		getCurrentLocation();
+	}
+	
+	func navigateToFindLocation()
+	{
+		performSegue(withIdentifier: "showMapSegue", sender: nil);
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+	{
+		
+		if segue.identifier == "showMapSegue"
+		{
+			
+			if let mapViewController = segue.destination as? MapViewController
+			{
+				if (global.mainModel.currentLocation != nil)
+				{
+					mapViewController.ininitalLocation = global.mainModel.currentLocation!;
+				}
+			}
+		}
 	}
 	
 	func setupTimelineControl()
@@ -131,18 +165,39 @@ class ViewController: UIViewController
 		self.navigationController?.isNavigationBarHidden = false;
 	}
 	
+	func updateViewForLocation(index: Int?)
+	{
+		DispatchQueue.main.async(execute:
+		{
+			self.setLocationView();
+			
+			if (global.mainModel.currentLocation != nil)
+			{
+				self.setLocation(global.mainModel.currentLocation!);
+			}
+			
+			if (index != nil)
+			{
+
+			
+				self.locationsList.reloadData();
+				self.locationsList.selectItem(at: IndexPath(row: index!, section: 0), animated: true, scrollPosition: .left);
+			}
+			
+		});
+		
+
+	}
+	
 	func getCurrentLocation()
 	{
 		setBusyView();
 		
-		mainModel.getLocation
-			{
-				result in
-				
+		global.mainModel.getLocation
+		{	result in
+			
 				if (result == true)
 				{
-					self.setLocationView();
-					self.setLocation(self.mainModel.currentLocation!);
 				}
 				else
 				{
@@ -173,7 +228,7 @@ class ViewController: UIViewController
 	
 	func setLocation(_ location: LocationModel)
 	{
-		self.mainModel.currentLocation = location;
+		global.mainModel.currentLocation = location;
 		self.locationDescription.text = location.name;
 		self.locationLocalTime.text = location.currentLocalTime!;
 		setLocationDay(location.currentDay!);
@@ -212,7 +267,7 @@ class ViewController: UIViewController
 	
 	func setWeather()
 	{
-		let location = mainModel.currentLocation;
+		let location = global.mainModel.currentLocation;
 		
 		if (location == nil)
 		{

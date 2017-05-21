@@ -24,15 +24,6 @@ class LocationCell : UICollectionViewCell
 		}
 	}
 	
-	var isLocationSelected: Bool
-	{
-		didSet
-		{
-			locationNameLabel.textColor = isLocationSelected ? UIColor.red : UIColor.white;
-			locationNameLabel.text = locationName;
-		}
-	}
-	
 	override var isSelected: Bool
 	{
 		didSet
@@ -42,16 +33,9 @@ class LocationCell : UICollectionViewCell
 	}
 
 
-
-
 	required init?(coder aDecoder: NSCoder)
 	{
 		self.locationName = "";
-		self.isLocationSelected = false;
 		super.init(coder: aDecoder);
-		
-		//locationNameLabel.font = LocationCell.locationNameFont;
 	}
-	
-	
 }

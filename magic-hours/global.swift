@@ -8,13 +8,19 @@
 
 import Foundation
 
+
+
 struct global
 {
+	static let mainModel:MainModel = MainModel();
+	
 	static let goldenHourDurationMinutes:Double = 30;
 	static let blueHourDurationMinutes:Double = 30;
 	
 	static let weatherMapUrl = "https://api.darksky.net/forecast";
 	static let weatherLang = "en";
+	
+	
 	
 	static let supportedWeatherLangs =
 	[
@@ -76,8 +82,6 @@ struct global
 		{
 			return "si";
 		}
-		
-		
 		
 		return	"us";
 	}

@@ -8,19 +8,65 @@
 
 import Foundation;
 import CoreLocation;
+import MapKit;
 
 typealias GetCurrentLocationCompletion = (_ result: Bool) -> ()
-
+typealias NavigateToFindLocationDelegate = () -> ()
+typealias UpdateViewForLocationDelegate = (_ index: Int?) -> ()
 
 class MainModel : NSObject, CLLocationManagerDelegate
 {
+	var navigateToFindLocationDelegate: NavigateToFindLocationDelegate? = nil;
+	var updateViewForLocationDelegate: UpdateViewForLocationDelegate? = nil;
+	
+	func NavigateToFindLocation()
+	{
+		if navigateToFindLocationDelegate != nil
+		{
+			navigateToFindLocationDelegate!();
+		}
+	}
+	
 	var currentLocation: LocationModel? = nil;
 	var locationCompletion: GetCurrentLocationCompletion? = nil;
 	
 	let locationManager = CLLocationManager();
 	
 	var dataSource: LocationDataSource? = nil;
-	var locations: [LocationModel] = [];
+		
+	func containsLocation(placeMark:MKPlacemark) -> Bool
+	{
+		return containsLocation(zip: placeMark.postalCode, lat: placeMark.coordinate.latitude, lon: placeMark.coordinate.longitude);
+	}
+	
+	func addLocation(_ location: LocationModel, save: Bool) -> Bool
+	{
+		self.currentLocation = location;
+		
+		if (containsLocation(zip: location.zip, lat: location.latitude, lon: location.longitude))
+		{
+			return false;
+		}
+		
+		let index = dataSource!.addLocation(location);
+		
+		if (updateViewForLocationDelegate != nil)
+		{
+			updateViewForLocationDelegate!(index);
+		}
+		
+		if (save)
+		{
+			saveLocations();
+		}
+		
+		return true;
+	}
+	
+	func containsLocation(zip: String?, lat: Double, lon: Double) -> Bool
+	{
+		return dataSource!.locations.first(where: { ($0.zip != nil && $0.zip == zip) || ($0.latitude == lat && $0.longitude == lon)}) != nil
+	}
 	
 	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
 	{
@@ -48,8 +94,10 @@ class MainModel : NSObject, CLLocationManagerDelegate
 		CLGeocoder().reverseGeocodeLocation(userLocation)
 		{ (placemarks, error) in
 			
-			var city:String?;
-			var zip:String?;
+			var city: String?;
+			var zip: String?;
+			
+			var addNew: Bool = true;
 			
 			// Check for errors
 			if (error != nil)
@@ -65,6 +113,11 @@ class MainModel : NSObject, CLLocationManagerDelegate
 				{
 					city = placemark.locality;
 					zip = placemark.postalCode;
+					
+					if (self.containsLocation(zip: zip, lat: userLocation.coordinate.latitude, lon:userLocation.coordinate.longitude))
+					{
+						addNew = false;
+					}
 				}
 				
 			}
@@ -73,7 +126,9 @@ class MainModel : NSObject, CLLocationManagerDelegate
 			
 			let location = LocationModel(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, description: city, zip: zip);
 			
-			self.currentLocation = location;
+			self.addLocation(location, save: false);
+			
+			
 			self.locationCompletion!(true);
 		}
 		
@@ -87,6 +142,8 @@ class MainModel : NSObject, CLLocationManagerDelegate
 	
 	func getLocations(delegate: @escaping SetLocationDelegate)
 	{
+		var locations: [LocationModel] = [];
+		
 		if let savedLocations = loadLocations()
 		{
 			locations = savedLocations;
@@ -126,7 +183,7 @@ class MainModel : NSObject, CLLocationManagerDelegate
 	
 	func saveLocations()
 	{
-		let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(locations, toFile: LocationModel.ArchiveURL.path);
+		let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(dataSource!.locations, toFile: LocationModel.ArchiveURL.path);
 		
 		print("saved locations: \(isSuccessfulSave)");
 	}

@@ -16,3 +16,45 @@
 
 /* Class = "UILabel"; text = "polar day"; ObjectID = "MOI-Bj-Pxk"; */
 "MOI-Bj-Pxk.text" = "polar day";
+
+/* Class = "UILabel"; text = "Search for location"; ObjectID = "a5g-1K-X0K"; */
+"a5g-1K-X0K.text" = "Search for location";
+
+/* Class = "UILabel"; text = "Magic Hours"; ObjectID = "FAQ-60-bbT"; */
+"FAQ-60-bbT.text" = "Magic Hours";
+
+/* Class = "UILabel"; text = "🗺"; ObjectID = "UL0-lw-3F7"; */
+"UL0-lw-3F7.text" = "🗺";
+
+/* Class = "UILabel"; text = "💡"; ObjectID = "Iqi-f0-rS2"; */
+"Iqi-f0-rS2.text" = "💡";
+
+/* Class = "UILabel"; text = "Manage reminders"; ObjectID = "Is5-hI-lPW"; */
+"Is5-hI-lPW.text" = "Manage reminders";
+
+/* Class = "UILabel"; text = "💋"; ObjectID = "O9z-xm-LKM"; */
+"O9z-xm-LKM.text" = "💋";
+
+/* Class = "UILabel"; text = "⏰"; ObjectID = "PL9-rX-CAr"; */
+"PL9-rX-CAr.text" = "⏰";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "Z3A-iW-SG0"; */
+"Z3A-iW-SG0.text" = "About";
+
+/* Class = "UILabel"; text = "Credits"; ObjectID = "chu-pE-Rre"; */
+"chu-pE-Rre.text" = "Credits";
+
+/* Class = "UILabel"; text = "❤️"; ObjectID = "zFc-aU-0mM"; */
+"zFc-aU-0mM.text" = "❤️";
+
+/* Class = "UILabel"; text = "Rate the app"; ObjectID = "zOV-rO-S2o"; */
+"zOV-rO-S2o.text" = "Rate the app";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "XUv-Qq-htD"; */
+"XUv-Qq-htD.text" = "Title";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "daQ-KT-G1E"; */
+"daQ-KT-G1E.text" = "Subtitle";
+
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "NCr-ih-TYd"; */
+"NCr-ih-TYd.title" = "Save";

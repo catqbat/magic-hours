@@ -28,6 +28,8 @@ enum L10n {
   static let polarDay = L10n.tr("polar_day")
   /// polar night
   static let polarNight = L10n.tr("polar_night")
+  /// search...
+  static let search = L10n.tr("search")
   /// sunrise
   static let sunrise = L10n.tr("sunrise")
   /// sunset

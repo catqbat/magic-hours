@@ -57,7 +57,7 @@ import UIKit
 		day = dateFormatter.string(from: date);
 		
 		dateFormatter.dateFormat = "EEE";
-		dayOfWeek = dateFormatter.string(from: date).replacingOccurrences(of: ".", with: "").trim(3).uppercased();
+		dayOfWeek = dateFormatter.string(from: date).replacingOccurrences(of: ".", with: "").trim(2).uppercased();
 
 	}
 	
