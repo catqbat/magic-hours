@@ -26,7 +26,7 @@ class ViewController: UIViewController
 	
 	
 	//MARK: Outlets
-	@IBOutlet weak var datePicker: UIDatePicker!
+	//@IBOutlet weak var datePicker: UIDatePicker!
 	@IBOutlet weak var locationsList: UICollectionView!;
 	@IBOutlet weak var menuButton: UIButton!
 	@IBOutlet weak var polarDayNightLabel: UILabel!
@@ -48,7 +48,7 @@ class ViewController: UIViewController
 	
 	@IBAction func showDateControl(_ sender: UITapGestureRecognizer)
 	{
-		datePicker.isHidden = false;
+		//datePicker.isHidden = false;
 	}
 
 	@IBAction func dateChanged(_ sender: UIDatePicker) {
@@ -80,7 +80,7 @@ class ViewController: UIViewController
 			self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
 		}
 		
-		datePicker.isHidden = true;
+		//datePicker.isHidden = true;
 		global.mainModel.navigateToFindLocationDelegate = self.navigateToFindLocation;
 		global.mainModel.updateViewForLocationDelegate = self.updateViewForLocation;
 		

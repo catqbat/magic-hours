@@ -191,24 +191,13 @@
                                     <constraint firstAttribute="height" constant="50" id="wSi-jC-SRm"/>
                                 </constraints>
                             </view>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="zaB-Lk-XQm">
-                                <rect key="frame" x="8" y="393" width="359" height="216"/>
-                                <date key="date" timeIntervalSinceReferenceDate="516217560.57754302">
-                                    <!--2017-05-11 17:46:00 +0000-->
-                                </date>
-                                <connections>
-                                    <action selector="dateChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="hcY-vH-PbY"/>
-                                </connections>
-                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" red="0.96939951181411743" green="0.77824312448501587" blue="0.29697680473327637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cdz-C8-TqZ" secondAttribute="bottom" id="14f-Mh-mPS"/>
                             <constraint firstItem="9mY-HF-gjZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="3JH-dH-5Rx"/>
-                            <constraint firstItem="cdz-C8-TqZ" firstAttribute="top" secondItem="zaB-Lk-XQm" secondAttribute="bottom" constant="8" id="5mG-cl-TDj"/>
                             <constraint firstItem="XdK-D4-uuc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LMc-LC-6K3"/>
                             <constraint firstItem="9mY-HF-gjZ" firstAttribute="leading" secondItem="O15-Y5-kVI" secondAttribute="trailing" constant="8" id="PaE-Tk-ZSq"/>
-                            <constraint firstAttribute="trailing" secondItem="zaB-Lk-XQm" secondAttribute="trailing" constant="8" id="QdU-nP-5o6"/>
                             <constraint firstItem="XdK-D4-uuc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="Rs6-dl-Hqc"/>
                             <constraint firstItem="cdz-C8-TqZ" firstAttribute="top" secondItem="O15-Y5-kVI" secondAttribute="bottom" id="Uu8-wY-tkb"/>
                             <constraint firstItem="hEp-Zw-U9b" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="Y0j-HC-tzd"/>
@@ -219,7 +208,6 @@
                             <constraint firstItem="hEp-Zw-U9b" firstAttribute="top" secondItem="9mY-HF-gjZ" secondAttribute="bottom" constant="8" id="lE9-kY-N99"/>
                             <constraint firstAttribute="bottom" secondItem="hEp-Zw-U9b" secondAttribute="bottom" constant="60" id="mli-lP-wxl"/>
                             <constraint firstAttribute="trailing" secondItem="cdz-C8-TqZ" secondAttribute="trailing" id="n0g-F0-LKQ"/>
-                            <constraint firstItem="zaB-Lk-XQm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="rj1-yy-wxi"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -237,7 +225,6 @@
                     <connections>
                         <outlet property="busyIndicator" destination="O15-Y5-kVI" id="skq-gD-7Rf"/>
                         <outlet property="currentDateControl" destination="qmh-BA-7vV" id="ySw-SD-lWY"/>
-                        <outlet property="datePicker" destination="zaB-Lk-XQm" id="Zlz-uN-Bgr"/>
                         <outlet property="locationDescription" destination="Bmt-ap-gZH" id="k3R-R6-iIe"/>
                         <outlet property="locationLocalTime" destination="DYu-1w-C3X" id="AIG-HC-49K"/>
                         <outlet property="locationsList" destination="HVv-Wn-vY3" id="f3t-ne-YX2"/>
